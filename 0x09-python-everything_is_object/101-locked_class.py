@@ -1,7 +1,10 @@
 #!/usr/bin/python3
-"""LockedClass module."""
+"""This defines a locked class"""
 
 
 class LockedClass:
-    """LockedClass class containing  only __slots__."""
-    __slots__ = ['first_name']
+    """
+    Only allows instatiation of an attribute called first_name
+    """
+
+    __slots__ = ["first_name"]

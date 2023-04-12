@@ -1,11 +1,16 @@
 #!/usr/bin/node
 
-function add (a, b) {
-  return (a + b);
+const argument = process.argv;
+const firstArg = parseInt(argument[2]);
+const secondArg = parseInt(argument[3]);
+
+function add(a, b) {
+  let sum = a + b;
+  console.log(sum);
 }
 
-if (process.argv.length < 4) {
+if ((isNaN(firstArg) && isNaN(secondArg)) || argument.length === 2) {
   console.log('NaN');
 } else {
-  console.log(add(parseInt(process.argv[2]), parseInt(process.argv[3])));
+  add(firstArg, secondArg);
 }

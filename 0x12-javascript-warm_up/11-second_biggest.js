@@ -1,13 +1,14 @@
 #!/usr/bin/node
 
-if (process.argv.length < 4) {
-  console.log('0');
+const argument = process.argv;
+
+if (argument.length === 2) {
+  console.log(0);
 } else {
-  const size = process.argv.length;
-  const ints = [];
-  for (let i = 2; i < size; i++) {
-    ints[i - 2] = parseInt(process.argv[i]);
-  }
-  ints.sort(function (a, b) { return b - a; });
-  console.log(ints[1]);
+  const args = argument
+    .map(Number)
+    .slice(2, argument.length) // start at 2 and ends and argument length number
+    .sort((a, b) => a - b); // sort the array in ascending order
+
+  console.log(args[args.length - 2]); // args.length - 2 pick the second last integer
 }

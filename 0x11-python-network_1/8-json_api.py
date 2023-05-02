@@ -1,18 +1,20 @@
 #!/usr/bin/python3
-"""Script that sends a POST request with data in the variable q"""
+""" """
 
 import requests
 from sys import argv
 
-if __name__ == '__main__':
-    url = "http://0.0.0.0:5000/search_user"
-    data = {"q": argv[1][0] if len(argv) > 1 else ""}
-    response = requests.post(url, data=data)
+
+if __name__ == "__main__":
+    param = ""
+    if len(argv) == 2:
+        param = argv[1]
     try:
-        d = response.json()
-        if not d:
-            print("No result")
+        res = requests.post("http://0.0.0.0:5000/search_user",
+                            data={'q': param}).json()
+        if ("id" in res) and ("name" in res):
+            print("[{}] {}".format(res['id'], res['name']))
         else:
-            print("[{}] {}".format(d.get("id"), d.get("name")))
-    except ValueError:
+            print("No result")
+    except:
         print("Not a valid JSON")
